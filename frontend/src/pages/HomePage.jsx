@@ -48,9 +48,17 @@ const HomePage = () => {
           <div className="floating-element absolute bottom-32 left-32 w-80 h-80 bg-emerald-500/10 organic-shape-2 blur-3xl"></div>
         </div>
 
-        {/* Hero Content */}
+        {/* Hero Content with Logo */}
         <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">
           <div className="space-y-8 animate-fadeInUp">
+            {/* Brand Logo */}
+            <div className="flex justify-center mb-8">
+              <img
+                src="https://customer-assets.emergentagent.com/job_garden-craft-2/artifacts/euk5fgx5_ChatGPT%20Image%20Jan%2020%2C%202026%2C%2005_20_40%20PM-Photoroom.png"
+                alt="Seasons Landscapers"
+                className="h-32 w-auto drop-shadow-2xl"
+              />
+            </div>
             <h1 className="font-display text-7xl md:text-8xl font-bold leading-tight tracking-tight">
               Our Story
             </h1>
