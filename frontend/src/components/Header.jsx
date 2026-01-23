@@ -42,77 +42,99 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md py-3' : 'bg-white/95 backdrop-blur-sm py-4'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled 
+          ? 'glass py-4 shadow-lg' 
+          : 'bg-transparent py-6'
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center group-hover:bg-green-700 transition-colors">
-              <Leaf className="w-6 h-6 text-white" />
+          {/* Logo with Modern Design */}
+          <Link to="/" className="flex items-center gap-3 group">
+            <div className="relative">
+              <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
+                <Leaf className="w-7 h-7 text-white" />
+              </div>
+              <div className="absolute inset-0 bg-green-400 rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
             </div>
-            <span className="text-xl font-bold text-gray-900">Seasons</span>
+            <span className={`font-display text-2xl font-bold transition-colors ${
+              isScrolled ? 'text-gray-900' : 'text-white'
+            }`}>
+              Seasons
+            </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          {/* Desktop Navigation with Modern Style */}
+          <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
                 onClick={() => handleNavClick(link.path)}
-                className={`text-sm font-medium transition-colors hover:text-green-600 ${
-                  location.pathname === link.path ? 'text-green-600' : 'text-gray-700'
+                className={`relative px-5 py-2 text-sm font-medium transition-all duration-300 rounded-full group ${
+                  location.pathname === link.path
+                    ? isScrolled
+                      ? 'text-green-600'
+                      : 'text-white'
+                    : isScrolled
+                    ? 'text-gray-700 hover:text-green-600'
+                    : 'text-white/90 hover:text-white'
                 }`}
               >
                 {link.name}
+                <span className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-green-400 to-green-600 transition-all duration-300 group-hover:w-1/2 ${
+                  location.pathname === link.path ? 'w-1/2' : ''
+                }`}></span>
               </Link>
             ))}
           </nav>
 
-          {/* CTA Button */}
+          {/* CTA Button with Modern Style */}
           <div className="hidden md:block">
             <Button
-              className="bg-green-600 hover:bg-green-700 text-white px-6 rounded-full transition-all hover:shadow-lg"
+              className="btn-modern bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-lg"
               onClick={() => handleNavClick('/#contact')}
             >
               GET IN TOUCH
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button with Animation */}
           <button
-            className="md:hidden p-2"
+            className={`md:hidden p-2 rounded-xl transition-all ${
+              isScrolled ? 'bg-gray-100 hover:bg-gray-200' : 'bg-white/10 hover:bg-white/20 backdrop-blur-sm'
+            }`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
-              <X className="w-6 h-6 text-gray-900" />
+              <X className={`w-6 h-6 ${isScrolled ? 'text-gray-900' : 'text-white'}`} />
             ) : (
-              <Menu className="w-6 h-6 text-gray-900" />
+              <Menu className={`w-6 h-6 ${isScrolled ? 'text-gray-900' : 'text-white'}`} />
             )}
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu with Glassmorphism */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-gray-200 pt-4">
-            <nav className="flex flex-col gap-4">
+          <div className="md:hidden mt-6 glass rounded-3xl p-6 animate-fadeInScale">
+            <nav className="flex flex-col gap-3">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.path}
                   onClick={() => handleNavClick(link.path)}
-                  className={`text-sm font-medium transition-colors hover:text-green-600 ${
-                    location.pathname === link.path ? 'text-green-600' : 'text-gray-700'
+                  className={`px-4 py-3 text-sm font-medium transition-all rounded-2xl ${
+                    location.pathname === link.path
+                      ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg'
+                      : 'text-gray-700 hover:bg-gray-100'
                   }`}
                 >
                   {link.name}
                 </Link>
               ))}
               <Button
-                className="bg-green-600 hover:bg-green-700 text-white w-full rounded-full"
+                className="btn-modern bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white w-full rounded-2xl py-4 mt-2"
                 onClick={() => handleNavClick('/#contact')}
               >
                 GET IN TOUCH
