@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Leaf, MapPin, Phone, Mail, Facebook, Instagram, Twitter } from 'lucide-react';
+import { Leaf, MapPin, Phone, Mail, Facebook, Instagram, Twitter, ArrowRight } from 'lucide-react';
 import { companyInfo, services } from '../data/mock';
 import { Button } from './ui/button';
 
@@ -16,46 +16,59 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-white border-t border-gray-200">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
-                <Leaf className="w-6 h-6 text-white" />
+    <footer className="relative bg-gradient-to-b from-gray-50 to-white border-t border-gray-100">
+      {/* Decorative Elements */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-green-50 organic-shape blur-3xl opacity-30 -z-10"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-emerald-50 organic-shape-2 blur-3xl opacity-30 -z-10"></div>
+
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          {/* Company Info with Modern Design */}
+          <div className="space-y-6">
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl flex items-center justify-center shadow-lg">
+                  <Leaf className="w-7 h-7 text-white" />
+                </div>
+                <div className="absolute inset-0 bg-green-400 rounded-2xl blur-xl opacity-30"></div>
               </div>
-              <span className="text-xl font-bold text-gray-900">Seasons</span>
+              <span className="font-display text-2xl font-bold text-gray-900">Seasons</span>
             </div>
-            <p className="text-sm text-gray-600 leading-relaxed">
-              At Seasons, we are dedicated to providing top-quality lawn care services to keep your yard healthy, beautiful.
+            <p className="text-gray-600 leading-relaxed">
+              At Seasons, we are dedicated to providing top-quality lawn care services to keep your yard healthy and beautiful.
             </p>
-            <div className="space-y-2">
-              <p className="text-sm font-semibold text-gray-900">Your Email Address</p>
+
+            {/* Newsletter Section */}
+            <div className="space-y-3">
+              <p className="text-sm font-semibold text-gray-900">Stay Updated</p>
               <div className="flex gap-2">
                 <input
                   type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  placeholder="Your email"
+                  className="flex-1 px-4 py-3 text-sm border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                 />
               </div>
-              <Button className="w-full bg-green-600 hover:bg-green-700 text-white text-sm rounded-lg">
-                SUBSCRIBE
+              <Button className="btn-modern w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white text-sm rounded-2xl py-3">
+                Subscribe
+                <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </div>
           </div>
 
           {/* Top Links */}
           <div>
-            <h3 className="text-lg font-bold text-gray-900 mb-4">Top Links</h3>
-            <ul className="space-y-2">
+            <h3 className="font-display text-xl font-bold text-gray-900 mb-6">Quick Links</h3>
+            <ul className="space-y-3">
               {topLinks.map((link, index) => (
                 <li key={index}>
                   <Link
                     to={link.path}
-                    className="text-sm text-gray-600 hover:text-green-600 transition-colors"
+                    className="text-gray-600 hover:text-green-600 transition-all hover:translate-x-1 inline-block group"
                   >
-                    {link.name}
+                    <span className="relative">
+                      {link.name}
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-600 transition-all group-hover:w-full"></span>
+                    </span>
                   </Link>
                 </li>
               ))}
@@ -64,15 +77,18 @@ const Footer = () => {
 
           {/* Our Services */}
           <div>
-            <h3 className="text-lg font-bold text-gray-900 mb-4">Our Services</h3>
-            <ul className="space-y-2">
+            <h3 className="font-display text-xl font-bold text-gray-900 mb-6">Our Services</h3>
+            <ul className="space-y-3">
               {services.slice(0, 6).map((service) => (
                 <li key={service.id}>
                   <Link
                     to={`/services#${service.slug}`}
-                    className="text-sm text-gray-600 hover:text-green-600 transition-colors"
+                    className="text-gray-600 hover:text-green-600 transition-all hover:translate-x-1 inline-block group"
                   >
-                    {service.name}
+                    <span className="relative">
+                      {service.name}
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-600 transition-all group-hover:w-full"></span>
+                    </span>
                   </Link>
                 </li>
               ))}
@@ -81,70 +97,83 @@ const Footer = () => {
 
           {/* Contact Us */}
           <div>
-            <h3 className="text-lg font-bold text-gray-900 mb-4">Contact Us</h3>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-2">
-                <Phone className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+            <h3 className="font-display text-xl font-bold text-gray-900 mb-6">Contact Us</h3>
+            <ul className="space-y-4">
+              <li className="group">
                 <a
                   href={`tel:${companyInfo.phone}`}
-                  className="text-sm text-gray-600 hover:text-green-600 transition-colors"
+                  className="flex items-start gap-3 text-gray-600 hover:text-green-600 transition-all"
                 >
-                  {companyInfo.phone}
+                  <div className="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center group-hover:bg-green-600 transition-all flex-shrink-0">
+                    <Phone className="w-5 h-5 text-green-600 group-hover:text-white transition-all" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium text-gray-500 mb-1">Call us</p>
+                    <p className="font-medium">{companyInfo.phone}</p>
+                  </div>
                 </a>
               </li>
-              <li className="flex items-start gap-2">
-                <MapPin className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                <span className="text-sm text-gray-600">
-                  {companyInfo.address}, {companyInfo.city}
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Mail className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+              <li className="group">
                 <a
                   href={`mailto:${companyInfo.email}`}
-                  className="text-sm text-gray-600 hover:text-green-600 transition-colors break-all"
+                  className="flex items-start gap-3 text-gray-600 hover:text-green-600 transition-all"
                 >
-                  {companyInfo.email}
+                  <div className="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center group-hover:bg-green-600 transition-all flex-shrink-0">
+                    <Mail className="w-5 h-5 text-green-600 group-hover:text-white transition-all" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium text-gray-500 mb-1">Email us</p>
+                    <p className="font-medium break-all">{companyInfo.email}</p>
+                  </div>
                 </a>
               </li>
-              <li className="flex items-start gap-2">
-                <MapPin className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                <span className="text-sm text-gray-600">www.Seasons.org</span>
+              <li className="group">
+                <div className="flex items-start gap-3 text-gray-600">
+                  <div className="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-5 h-5 text-green-600" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium text-gray-500 mb-1">Visit us</p>
+                    <p className="font-medium text-sm leading-relaxed">
+                      {companyInfo.address}, {companyInfo.city}
+                    </p>
+                  </div>
+                </div>
               </li>
             </ul>
-            <div className="flex gap-3 mt-4">
-              <a
-                href="#"
-                className="w-8 h-8 rounded-full bg-gray-100 hover:bg-green-600 flex items-center justify-center transition-colors group"
-              >
-                <Facebook className="w-4 h-4 text-gray-600 group-hover:text-white" />
-              </a>
-              <a
-                href="#"
-                className="w-8 h-8 rounded-full bg-gray-100 hover:bg-green-600 flex items-center justify-center transition-colors group"
-              >
-                <Instagram className="w-4 h-4 text-gray-600 group-hover:text-white" />
-              </a>
-              <a
-                href="#"
-                className="w-8 h-8 rounded-full bg-gray-100 hover:bg-green-600 flex items-center justify-center transition-colors group"
-              >
-                <Twitter className="w-4 h-4 text-gray-600 group-hover:text-white" />
-              </a>
+
+            {/* Social Media with Modern Design */}
+            <div className="flex gap-3 mt-6">
+              {[
+                { icon: Facebook, link: '#' },
+                { icon: Instagram, link: '#' },
+                { icon: Twitter, link: '#' }
+              ].map((social, index) => (
+                <a
+                  key={index}
+                  href={social.link}
+                  className="group relative"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-gray-100 to-gray-200 hover:from-green-600 hover:to-emerald-600 flex items-center justify-center transition-all duration-500 shadow-sm hover:shadow-lg">
+                    <social.icon className="w-5 h-5 text-gray-600 group-hover:text-white transition-all" />
+                  </div>
+                  <div className="absolute inset-0 bg-green-400 rounded-xl blur-lg opacity-0 group-hover:opacity-30 transition-opacity"></div>
+                </a>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-gray-200 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-gray-600">
-            © {currentYear} Seasons Landscaping. All rights Reserved
+        {/* Bottom Bar with Modern Design */}
+        <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-gray-600">
+            © {currentYear} <span className="font-semibold text-gray-900">Seasons Landscaping</span>. All rights reserved
           </p>
-          <div className="flex gap-6 text-sm text-gray-600">
-            <Link to="#" className="hover:text-green-600 transition-colors">
+          <div className="flex gap-8">
+            <Link to="#" className="text-gray-600 hover:text-green-600 transition-all text-sm">
               Terms & Conditions
             </Link>
-            <Link to="#" className="hover:text-green-600 transition-colors">
+            <Link to="#" className="text-gray-600 hover:text-green-600 transition-all text-sm">
               Privacy Policy
             </Link>
           </div>
