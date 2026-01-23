@@ -51,18 +51,14 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           {/* Logo with Modern Design */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="relative">
-              <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
-                <Leaf className="w-7 h-7 text-white" />
-              </div>
-              <div className="absolute inset-0 bg-green-400 rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
-            </div>
-            <span className={`font-display text-2xl font-bold transition-colors ${
-              isScrolled ? 'text-gray-900' : 'text-white'
-            }`}>
-              Seasons
-            </span>
+          <Link to="/" className="flex items-center group">
+            <img
+              src="https://customer-assets.emergentagent.com/job_garden-craft-2/artifacts/euk5fgx5_ChatGPT%20Image%20Jan%2020%2C%202026%2C%2005_20_40%20PM-Photoroom.png"
+              alt="Seasons Landscapers"
+              className={`h-16 w-auto transition-all duration-500 group-hover:scale-105 ${
+                isScrolled ? 'brightness-100' : 'brightness-100'
+              }`}
+            />
           </Link>
 
           {/* Desktop Navigation with Modern Style */}
