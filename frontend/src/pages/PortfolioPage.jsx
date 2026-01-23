@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { projects, categories } from '../data/mock';
 import { Card, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
-import { ArrowRight, Filter } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const PortfolioPage = () => {
   const [activeCategory, setActiveCategory] = useState('All Projects');
@@ -19,30 +19,45 @@ const PortfolioPage = () => {
 
   return (
     <div className="min-h-screen pt-20">
-      {/* Hero Section */}
-      <section className="relative h-[500px] flex items-center justify-center overflow-hidden bg-gray-900">
+      {/* Hero Section with Parallax */}
+      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-50"
+          className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: `url('https://images.unsplash.com/photo-1681465766418-6474cfdcbb3c')`,
           }}
-        ></div>
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6">
-            <span className="text-sm font-semibold uppercase tracking-wide">Our Masterpieces</span>
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
+          <div className="grain-overlay"></div>
+        </div>
+
+        {/* Floating Shapes */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="floating-element absolute top-20 left-20 w-64 h-64 bg-green-500/10 organic-shape blur-3xl"></div>
+          <div className="floating-element absolute bottom-32 right-32 w-80 h-80 bg-emerald-500/10 organic-shape-2 blur-3xl"></div>
+        </div>
+
+        <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">
+          <div className="animate-fadeInUp space-y-6">
+            <div className="inline-flex items-center gap-3 px-5 py-3 glass-dark rounded-full mb-4">
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <span className="text-sm font-semibold uppercase tracking-wider">Our Masterpieces</span>
+            </div>
+            <h1 className="font-display text-6xl md:text-7xl font-bold mb-6 leading-tight">
+              Previous Projects Portfolio
+            </h1>
+            <p className="text-xl md:text-2xl font-light leading-relaxed max-w-4xl mx-auto opacity-90">
+              Explore our collection of transformed landscapes, from intimate residential gardens to expansive
+              commercial green spaces. We bring nature to life.
+            </p>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">Previous Projects Portfolio</h1>
-          <p className="text-xl md:text-2xl font-light max-w-3xl mx-auto">
-            Explore our collection of transformed landscapes, from intimate residential gardens to expansive
-            commercial green spaces. We bring nature to life.
-          </p>
         </div>
       </section>
 
-      {/* Filter Section */}
-      <section className="py-12 bg-white border-b border-gray-200">
+      {/* Filter Section with Modern Design */}
+      <section className="sticky top-20 z-40 py-8 glass border-b border-gray-100">
         <div className="container mx-auto px-4">
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-3">
             {categories.map((category) => (
               <button
                 key={category}
@@ -50,10 +65,10 @@ const PortfolioPage = () => {
                   setActiveCategory(category);
                   setVisibleProjects(6);
                 }}
-                className={`px-6 py-3 rounded-full font-medium transition-all ${
+                className={`btn-modern px-8 py-4 rounded-full font-semibold transition-all duration-500 ${
                   activeCategory === category
-                    ? 'bg-green-600 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-xl scale-105'
+                    : 'bg-white text-gray-700 hover:bg-gray-50 border-2 border-gray-200 hover:border-green-500'
                 }`}
               >
                 {category}
@@ -63,62 +78,74 @@ const PortfolioPage = () => {
         </div>
       </section>
 
-      {/* Projects Grid */}
-      <section className="py-20 bg-gray-50">
+      {/* Projects Grid with Advanced Cards */}
+      <section className="py-20 bg-gradient-to-b from-white via-gray-50 to-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.slice(0, visibleProjects).map((project) => (
-              <Card
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {filteredProjects.slice(0, visibleProjects).map((project, index) => (
+              <div
                 key={project.id}
-                className="group overflow-hidden hover:shadow-2xl transition-all duration-300 border-0"
+                className="card-modern animate-fadeInUp"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="relative h-72 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                  <div className="absolute top-4 right-4 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                    {project.category}
+                <div className="glass rounded-3xl overflow-hidden shadow-2xl h-full group">
+                  {/* Image Container */}
+                  <div className="image-zoom relative h-80 overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="gradient-overlay"></div>
+
+                    {/* Category Badge */}
+                    <div className="glass-dark absolute top-6 right-6 px-4 py-2 rounded-full">
+                      <span className="text-white text-sm font-semibold">{project.category}</span>
+                    </div>
+
+                    {/* Title Overlay */}
+                    <div className="absolute bottom-6 left-6 right-6">
+                      <h3 className="font-display text-3xl font-bold text-white mb-2">{project.title}</h3>
+                      <p className="text-white/90 text-sm">{project.year}</p>
+                    </div>
                   </div>
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <h3 className="text-2xl font-bold text-white mb-1">{project.title}</h3>
-                    <p className="text-white/90 text-sm">{project.year}</p>
+
+                  {/* Content */}
+                  <div className="p-8">
+                    <p className="text-gray-600 mb-6 leading-relaxed">{project.description}</p>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.tags.map((tag, idx) => (
+                        <span
+                          key={idx}
+                          className="px-4 py-2 bg-gradient-to-r from-green-50 to-emerald-50 text-green-700 text-xs font-semibold rounded-full border border-green-100"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* CTA Button */}
+                    <button className="btn-modern w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white py-4 rounded-2xl font-semibold flex items-center justify-center gap-2 group">
+                      View Case Study
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </button>
                   </div>
                 </div>
-                <CardContent className="p-6">
-                  <p className="text-gray-600 mb-4 leading-relaxed">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.map((tag, index) => (
-                      <span
-                        key={index}
-                        className="px-3 py-1 bg-green-50 text-green-700 text-xs font-medium rounded-full"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <Button
-                    variant="ghost"
-                    className="text-green-600 hover:text-green-700 hover:bg-green-50 p-0 h-auto font-semibold group/btn"
-                  >
-                    VIEW CASE STUDY{' '}
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                  </Button>
-                </CardContent>
-              </Card>
+              </div>
             ))}
           </div>
 
           {/* Load More Button */}
           {visibleProjects < filteredProjects.length && (
-            <div className="text-center mt-12">
+            <div className="text-center mt-16">
               <Button
                 onClick={loadMore}
-                className="bg-white text-green-600 border-2 border-green-600 hover:bg-green-600 hover:text-white px-8 py-6 rounded-full text-base font-semibold transition-all"
+                className="btn-modern bg-white text-green-600 border-2 border-green-600 hover:bg-green-600 hover:text-white px-10 py-6 rounded-full text-lg font-semibold"
               >
                 Load More Projects
+                <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </div>
           )}
@@ -133,16 +160,25 @@ const PortfolioPage = () => {
             backgroundImage: `url('https://images.pexels.com/photos/919278/pexels-photo-919278.jpeg')`,
           }}
         >
-          <div className="absolute inset-0 bg-green-900/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-green-900/90 to-emerald-900/90"></div>
+          <div className="grain-overlay"></div>
         </div>
+
+        {/* Floating Shapes */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="floating-element absolute top-20 right-20 w-96 h-96 bg-white/5 organic-shape blur-3xl"></div>
+          <div className="floating-element absolute bottom-20 left-20 w-96 h-96 bg-white/5 organic-shape-2 blur-3xl"></div>
+        </div>
+
         <div className="relative z-10 container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center text-white space-y-6">
-            <h2 className="text-4xl md:text-5xl font-bold">Inspired by our work?</h2>
-            <p className="text-xl opacity-90">
+          <div className="max-w-4xl mx-auto text-center text-white space-y-8">
+            <h2 className="font-display text-5xl md:text-6xl font-bold">Inspired by our work?</h2>
+            <p className="text-xl md:text-2xl opacity-90 leading-relaxed">
               Let's start discussing your next project. Our experts are ready to transform your vision into reality.
             </p>
-            <Button className="bg-white text-green-700 hover:bg-gray-100 px-8 py-6 rounded-full text-base font-semibold mt-6">
-              START YOUR PROJECT
+            <Button className="btn-modern bg-white text-green-700 hover:bg-gray-100 px-10 py-7 rounded-full text-lg font-semibold mt-8">
+              Start Your Project
+              <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
           </div>
         </div>
