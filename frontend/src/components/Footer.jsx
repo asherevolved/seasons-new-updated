@@ -25,15 +25,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Company Info with Modern Design */}
           <div className="space-y-6">
-            <div className="flex items-center gap-3">
-              <div className="relative">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl flex items-center justify-center shadow-lg">
-                  <Leaf className="w-7 h-7 text-white" />
-                </div>
-                <div className="absolute inset-0 bg-green-400 rounded-2xl blur-xl opacity-30"></div>
-              </div>
-              <span className="font-display text-2xl font-bold text-gray-900">Seasons</span>
-            </div>
+            <Link to="/" className="flex items-center group inline-block">
+              <img
+                src="https://customer-assets.emergentagent.com/job_garden-craft-2/artifacts/euk5fgx5_ChatGPT%20Image%20Jan%2020%2C%202026%2C%2005_20_40%20PM-Photoroom.png"
+                alt="Seasons Landscapers"
+                className="h-20 w-auto group-hover:scale-105 transition-transform duration-500"
+              />
+            </Link>
             <p className="text-gray-600 leading-relaxed">
               At Seasons, we are dedicated to providing top-quality lawn care services to keep your yard healthy and beautiful.
             </p>
