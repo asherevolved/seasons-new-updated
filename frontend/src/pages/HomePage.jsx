@@ -35,9 +35,9 @@ const HomePage = () => {
           className="absolute inset-0 bg-cover bg-center transition-transform duration-100"
           style={{
             backgroundImage: `url('https://images.unsplash.com/photo-1558293842-c0fd3db86157')`,
-            transform: `translateY(${scrollY * 0.5}px)`,
-          }}
-        >
+            transform: `translateY(${scrollY * 0.5}px)`
+          }}>
+
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60"></div>
           <div className="grain-overlay"></div>
         </div>
@@ -69,7 +69,7 @@ const HomePage = () => {
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
+          <div className="w-6 h-10 border-2 border-white/50 flex items-start justify-center p-2 rounded-full !opacity-[0%]">
             <div className="w-1 h-3 bg-white/70 rounded-full animate-pulse"></div>
           </div>
         </div>
@@ -85,8 +85,8 @@ const HomePage = () => {
                 <img
                   src="https://images.unsplash.com/photo-1751830188321-70fa086fc8a0"
                   alt="Landscaping work"
-                  className="w-full h-[600px] object-cover"
-                />
+                  className="w-full h-[600px] object-cover" />
+
                 <div className="gradient-overlay"></div>
               </div>
 
@@ -191,8 +191,8 @@ const HomePage = () => {
                 <div
                   key={value.id}
                   className="card-modern group"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
+                  style={{ animationDelay: `${index * 0.1}s` }}>
+
                   <div className="glass rounded-3xl p-8 h-full hover:shadow-2xl border border-gray-100">
                     <div className="relative">
                       {/* Icon Container */}
@@ -211,8 +211,8 @@ const HomePage = () => {
                       </p>
                     </div>
                   </div>
-                </div>
-              );
+                </div>);
+
             })}
           </div>
         </div>
@@ -233,20 +233,20 @@ const HomePage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {teamMembers.map((member, index) => (
-              <div
-                key={member.id}
-                className="card-modern group"
-                style={{ animationDelay: `${index * 0.15}s` }}
-              >
+            {teamMembers.map((member, index) =>
+            <div
+              key={member.id}
+              className="card-modern group"
+              style={{ animationDelay: `${index * 0.15}s` }}>
+
                 <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl">
                   {/* Image Container */}
                   <div className="image-zoom relative h-96 overflow-hidden">
                     <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-full h-full object-cover"
-                    />
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover" />
+
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
 
                     {/* Floating Badge */}
@@ -263,7 +263,7 @@ const HomePage = () => {
                   </div>
                 </div>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </section>
@@ -288,21 +288,21 @@ const HomePage = () => {
 
           <div className="max-w-6xl mx-auto relative">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {testimonials.map((testimonial, index) => (
-                <div
-                  key={testimonial.id}
-                  className={`card-modern transition-all duration-500 ${
-                    index === currentTestimonial ? 'scale-105' : 'scale-100 opacity-90'
-                  }`}
-                >
+              {testimonials.map((testimonial, index) =>
+              <div
+                key={testimonial.id}
+                className={`card-modern transition-all duration-500 ${
+                index === currentTestimonial ? 'scale-105' : 'scale-100 opacity-90'}`
+                }>
+
                   <div className="glass rounded-3xl overflow-hidden shadow-xl h-full">
                     {/* Project Image */}
                     <div className="image-zoom relative h-56 overflow-hidden">
                       <img
-                        src={testimonial.projectImage}
-                        alt={testimonial.project}
-                        className="w-full h-full object-cover"
-                      />
+                      src={testimonial.projectImage}
+                      alt={testimonial.project}
+                      className="w-full h-full object-cover" />
+
                       <div className="gradient-overlay"></div>
 
                       {/* Rating Badge */}
@@ -315,9 +315,9 @@ const HomePage = () => {
                     {/* Content */}
                     <div className="p-8">
                       <div className="flex gap-1 mb-4">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                        ))}
+                        {[...Array(5)].map((_, i) =>
+                      <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                      )}
                       </div>
 
                       <p className="text-gray-700 italic mb-6 leading-relaxed">
@@ -326,10 +326,10 @@ const HomePage = () => {
 
                       <div className="flex items-center gap-4">
                         <img
-                          src={testimonial.image}
-                          alt={testimonial.name}
-                          className="w-14 h-14 rounded-full object-cover ring-2 ring-green-100"
-                        />
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        className="w-14 h-14 rounded-full object-cover ring-2 ring-green-100" />
+
                         <div>
                           <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
                           <p className="text-sm text-gray-600">{testimonial.role}</p>
@@ -338,21 +338,21 @@ const HomePage = () => {
                     </div>
                   </div>
                 </div>
-              ))}
+              )}
             </div>
 
             {/* Navigation */}
             <div className="flex justify-center gap-4 mt-12">
               <button
                 onClick={prevTestimonial}
-                className="btn-modern w-12 h-12 rounded-full bg-white border-2 border-gray-200 hover:border-green-500 hover:bg-green-50 flex items-center justify-center shadow-lg"
-              >
+                className="btn-modern w-12 h-12 rounded-full bg-white border-2 border-gray-200 hover:border-green-500 hover:bg-green-50 flex items-center justify-center shadow-lg">
+
                 <ChevronLeft className="w-5 h-5 text-gray-700" />
               </button>
               <button
                 onClick={nextTestimonial}
-                className="btn-modern w-12 h-12 rounded-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 flex items-center justify-center shadow-lg"
-              >
+                className="btn-modern w-12 h-12 rounded-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 flex items-center justify-center shadow-lg">
+
                 <ChevronRight className="w-5 h-5 text-white" />
               </button>
             </div>
@@ -380,29 +380,29 @@ const HomePage = () => {
             {/* Contact Info Cards */}
             <div className="space-y-6">
               {[
-                {
-                  icon: Phone,
-                  title: 'Phone',
-                  subtitle: 'Mon-Fri from 8am to 5pm',
-                  content: companyInfo.phone,
-                  link: `tel:${companyInfo.phone}`
-                },
-                {
-                  icon: Mail,
-                  title: 'Email',
-                  subtitle: 'Online support 24/7',
-                  content: companyInfo.email,
-                  link: `mailto:${companyInfo.email}`
-                },
-                {
-                  icon: MapPin,
-                  title: 'Main Office',
-                  subtitle: '',
-                  content: `${companyInfo.address}, ${companyInfo.city}, ${companyInfo.country}`,
-                  link: null
-                }
-              ].map((item, index) => (
-                <div key={index} className="card-modern">
+              {
+                icon: Phone,
+                title: 'Phone',
+                subtitle: 'Mon-Fri from 8am to 5pm',
+                content: companyInfo.phone,
+                link: `tel:${companyInfo.phone}`
+              },
+              {
+                icon: Mail,
+                title: 'Email',
+                subtitle: 'Online support 24/7',
+                content: companyInfo.email,
+                link: `mailto:${companyInfo.email}`
+              },
+              {
+                icon: MapPin,
+                title: 'Main Office',
+                subtitle: '',
+                content: `${companyInfo.address}, ${companyInfo.city}, ${companyInfo.country}`,
+                link: null
+              }].
+              map((item, index) =>
+              <div key={index} className="card-modern">
                   <div className="glass rounded-2xl p-6 hover:shadow-2xl">
                     <div className="flex items-start gap-4">
                       <div className="w-14 h-14 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl flex items-center justify-center flex-shrink-0">
@@ -411,21 +411,21 @@ const HomePage = () => {
                       <div className="flex-1">
                         <h3 className="font-bold text-gray-900 mb-1 text-lg">{item.title}</h3>
                         {item.subtitle && <p className="text-gray-600 text-sm mb-2">{item.subtitle}</p>}
-                        {item.link ? (
-                          <a
-                            href={item.link}
-                            className="text-green-600 font-semibold hover:text-green-700 transition-colors break-all"
-                          >
+                        {item.link ?
+                      <a
+                        href={item.link}
+                        className="text-green-600 font-semibold hover:text-green-700 transition-colors break-all">
+
                             {item.content}
-                          </a>
-                        ) : (
-                          <p className="text-gray-700">{item.content}</p>
-                        )}
+                          </a> :
+
+                      <p className="text-gray-700">{item.content}</p>
+                      }
                       </div>
                     </div>
                   </div>
                 </div>
-              ))}
+              )}
             </div>
 
             {/* Contact Form */}
@@ -439,22 +439,22 @@ const HomePage = () => {
                     <input
                       type="text"
                       placeholder="Your Name"
-                      className="w-full px-6 py-4 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
-                    />
+                      className="w-full px-6 py-4 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all" />
+
                   </div>
                   <div>
                     <input
                       type="email"
                       placeholder="Email Address"
-                      className="w-full px-6 py-4 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
-                    />
+                      className="w-full px-6 py-4 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all" />
+
                   </div>
                   <div>
                     <input
                       type="tel"
                       placeholder="Phone Number"
-                      className="w-full px-6 py-4 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
-                    />
+                      className="w-full px-6 py-4 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all" />
+
                   </div>
                   <div>
                     <select className="w-full px-6 py-4 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all">
@@ -469,8 +469,8 @@ const HomePage = () => {
                     <textarea
                       rows="4"
                       placeholder="Tell us more about your garden project..."
-                      className="w-full px-6 py-4 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none transition-all"
-                    ></textarea>
+                      className="w-full px-6 py-4 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none transition-all">
+                    </textarea>
                   </div>
 
                   <Button className="btn-modern w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white py-6 rounded-2xl text-base font-semibold">
@@ -483,8 +483,8 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>);
+
 };
 
 export default HomePage;
