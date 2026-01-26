@@ -1,14 +1,26 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import * as Icons from 'lucide-react';
-import { companyInfo, coreValues, teamMembers, testimonials } from '../data/mock';
+import { Link } from 'react-router-dom';
+import { companyInfo, coreValues, teamMembers } from '../data/mock';
 import { Button } from '../components/ui/button';
-import { Card, CardContent } from '../components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { Logos3 } from '../components/ui/logos3';
+import ThreeDIcon from '../components/ui/three-d-icon';
+import CoreValueIcon3D from '../components/ui/core-value-icon-3d';
+import TiltCard from '../components/ui/tilt-card';
 import { ChevronLeft, ChevronRight, Star, Check, Phone, Mail, MapPin, MessageCircle, ArrowRight } from 'lucide-react';
 
 const HomePage = () => {
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [scrollY, setScrollY] = useState(0);
+  const [activeHeroSlide, setActiveHeroSlide] = useState(0);
   const heroRef = useRef(null);
+  const heroSlides = useMemo(
+    () => [
+      encodeURI('/projects/WhatsApp Image 2026-01-21 at 7.53.23 PM.jpeg'),
+      encodeURI('/projects/WhatsApp Image 2026-01-21 at 7.53.39 PM.jpeg')
+    ],
+    []
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,59 +30,69 @@ const HomePage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
+  useEffect(() => {
+    if (heroSlides.length <= 1) return;
+    const id = window.setInterval(() => {
+      setActiveHeroSlide((i) => (i + 1) % heroSlides.length);
+    }, 4500);
+    return () => window.clearInterval(id);
+  }, [heroSlides.length]);
 
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section with Parallax */}
       <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Parallax Background */}
-        <div
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-100"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1558293842-c0fd3db86157')`,
-            transform: `translateY(${scrollY * 0.5}px)`
-          }}>
-
+        <div className="absolute inset-0 bg-black">
+          {heroSlides.map((src, idx) => (
+            <div
+              key={src}
+              className={`absolute inset-0 transition-opacity duration-1000 ${
+                idx === activeHeroSlide ? 'opacity-100' : 'opacity-0'
+              }`}
+              style={{ transform: `translateY(${scrollY * 0.5}px)` }}
+            >
+              <img src={src} alt="Seasons Landscapers" className="w-full h-full object-cover" />
+            </div>
+          ))}
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60"></div>
           <div className="grain-overlay"></div>
         </div>
 
         {/* Floating Organic Shapes */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none" data-anim="fade">
           <div className="floating-element absolute top-20 right-20 w-64 h-64 bg-green-500/10 organic-shape blur-3xl"></div>
           <div className="floating-element absolute bottom-32 left-32 w-80 h-80 bg-emerald-500/10 organic-shape-2 blur-3xl"></div>
         </div>
 
         {/* Hero Content with Logo */}
-        <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">
-          <div className="space-y-8 animate-fadeInUp">
+        <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto" data-anim="fade-up" data-delay="100">
+          <div className="space-y-8">
             {/* Brand Logo */}
-            <div className="flex justify-center mb-8">
+            <div className="flex justify-center mb-8" data-anim="zoom" data-delay="150">
               <img
-                src="https://customer-assets.emergentagent.com/job_garden-craft-2/artifacts/euk5fgx5_ChatGPT%20Image%20Jan%2020%2C%202026%2C%2005_20_40%20PM-Photoroom.png"
+                src="/SEASONS___1_-removebg-preview.png"
                 alt="Seasons Landscapers"
-                className="h-32 w-auto drop-shadow-2xl"
+                className="h-64 md:h-72 w-auto drop-shadow-2xl"
               />
             </div>
-            <h1 className="font-display text-7xl md:text-8xl font-bold leading-tight tracking-tight">
-              Our Story
-            </h1>
-            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-green-400 to-transparent mx-auto"></div>
-            <p className="text-xl md:text-2xl font-light leading-relaxed max-w-3xl mx-auto opacity-90">
-              Rooted in passion and driven by vision, discover the heritage and
-              <br className="hidden md:block" />
-              expertise that define Seasons Landscapers
-            </p>
-            <Button className="btn-modern bg-white text-green-900 hover:bg-green-50 px-10 py-7 rounded-full text-lg font-semibold mt-8">
-              Explore Our Work
-              <ArrowRight className="ml-2 w-5 h-5" />
+
+            <div className="flex justify-center" data-anim="fade-up" data-delay="170">
+              <p className="text-white/90 font-display text-2xl md:text-3xl tracking-wide">
+                A legacy written in green
+              </p>
+            </div>
+            
+            <Button
+              asChild
+              className="btn-modern bg-white text-green-900 hover:bg-green-50 px-10 py-7 rounded-full text-lg font-semibold mt-8"
+              data-anim="fade-up"
+              data-delay="250"
+            >
+              <Link to="/portfolio">
+                Explore Our Work
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Link>
             </Button>
           </div>
         </div>
@@ -83,132 +105,109 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* About Section with Glassmorphism */}
-      <section id="about" className="relative py-32 bg-gradient-to-b from-white via-gray-50 to-white">
+      <section id="about" className="relative py-24 bg-white" data-anim="fade-up" data-delay="100">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Image Side with Advanced Effects */}
-            <div className="relative group">
-              <div className="image-zoom rounded-3xl overflow-hidden shadow-2xl">
+          <div className="text-center mb-14" data-anim="fade-up" data-delay="150">
+            <h2 className="font-display text-5xl md:text-6xl font-bold text-gray-900">About Us</h2>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            <div className="lg:col-span-7 space-y-8" data-anim="fade-up" data-delay="200">
+              <p className="text-gray-700 text-lg leading-relaxed">
+                We are <span className="font-semibold text-gray-900">Seasons Landscapers</span> — a team rooted in nature, design, and the belief
+                that every space deserves to feel alive.
+              </p>
+
+              <p className="text-gray-700 text-lg leading-relaxed">
+                What began over two decades ago with <span className="font-semibold text-gray-900">Sharon Prasad</span>'s experience and dedication
+                has grown into a modern landscaping and maintenance company built on trust, creativity, and care. Her legacy laid the foundation;
+                today, we're shaping its future with fresh ideas and a clear vision.
+              </p>
+
+              <div className="w-full rounded-2xl border border-gray-100 bg-gray-50 p-3 shadow-sm">
                 <img
-                  src="https://images.unsplash.com/photo-1751830188321-70fa086fc8a0"
-                  alt="Landscaping work"
-                  className="w-full h-[600px] object-cover" />
-
-                <div className="gradient-overlay"></div>
+                  src="/seasonslandscapers_3151690261129527523_51255948686_2023-07-21.jpg"
+                  alt="Sharon Prasad"
+                  className="w-full h-[300px] md:h-[340px] rounded-xl object-contain"
+                  loading="lazy"
+                />
               </div>
 
-              {/* Floating Glass Card */}
-              <div className="glass absolute -bottom-8 -right-8 rounded-2xl shadow-xl p-8 max-w-xs animate-fadeInScale">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="w-14 h-14 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl flex items-center justify-center">
-                    <Icons.Leaf className="w-7 h-7 text-white" />
-                  </div>
-                  <div>
-                    <div className="text-3xl font-display font-bold text-green-600">20+</div>
-                    <div className="text-sm text-gray-600 font-medium">Years Experience</div>
-                  </div>
-                </div>
-              </div>
+              <p className="text-gray-700 text-lg leading-relaxed">
+                Led by <span className="font-semibold text-gray-900">Clifford Prasad</span> and <span className="font-semibold text-gray-900">Kevin Prasad</span>, we're
+                redefining how India experiences green spaces — blending thoughtful design, sustainable choices, and reliable maintenance to bring nature
+                closer to everyday life.
+              </p>
 
-              {/* Decorative Elements */}
-              <div className="absolute -top-6 -left-6 w-32 h-32 bg-green-100 organic-shape -z-10"></div>
-              <div className="absolute -bottom-6 right-32 w-24 h-24 bg-emerald-50 organic-shape-2 -z-10"></div>
+              <p className="text-gray-700 text-lg leading-relaxed">
+                From intimate balconies to vibrant cafés, rooftops, and institutions, we create landscapes that do more than look beautiful — they thrive,
+                inspire, and grow with time.
+              </p>
             </div>
 
-            {/* Content Side */}
-            <div className="space-y-8">
-              <div className="inline-flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-full">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-sm font-semibold text-green-700 uppercase tracking-wider">
-                  About Seasons Landscapers
-                </span>
-              </div>
-
-              <h2 className="font-display text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
-                Cultivating Beauty,
-                <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">
-                  One Garden at a Time
-                </span>
-              </h2>
-
-              <div className="space-y-6 text-gray-600 leading-relaxed text-lg">
-                <p>
-                  At Seasons Landscapers, we're more than just a landscaping company. Founded on a passion
-                  for nature and design, our journey began with a simple vision: to transform ordinary outdoor
-                  spaces into extraordinary natural havens that inspire and delight.
-                </p>
-                <p>
-                  From small residential gardens to expansive commercial landscapes, we've honed our craft
-                  through dedication, innovation, and an unwavering commitment to excellence.
-                </p>
-              </div>
-
-              {/* Stats with Modern Design */}
-              <div className="grid grid-cols-2 gap-6 pt-8">
-                <div className="group">
-                  <div className="glass rounded-2xl p-6 text-center hover:shadow-2xl transition-all duration-500">
-                    <div className="text-5xl font-display font-bold text-green-600 mb-2">
-                      {companyInfo.stats.yearsExperience}
+            <div className="lg:col-span-5" data-anim="fade-up" data-delay="250">
+              <Card className="border-gray-100 shadow-sm">
+                <CardHeader>
+                  <CardTitle className="text-xl">Our Journey</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3 text-gray-700">
+                      <Check className="w-5 h-5 text-green-600 mt-0.5" />
+                      <div>Founded by <span className="font-semibold text-gray-900">Sharon Prasad</span> over 20 years ago</div>
                     </div>
-                    <div className="text-sm text-gray-600 font-medium uppercase tracking-wide">Years of Excellence</div>
-                  </div>
-                </div>
-                <div className="group">
-                  <div className="glass rounded-2xl p-6 text-center hover:shadow-2xl transition-all duration-500">
-                    <div className="text-5xl font-display font-bold text-green-600 mb-2">
-                      {companyInfo.stats.projectsCompleted}
+                    <div className="flex items-start gap-3 text-gray-700">
+                      <Check className="w-5 h-5 text-green-600 mt-0.5" />
+                      <div>Built on trust, creativity, and care</div>
                     </div>
-                    <div className="text-sm text-gray-600 font-medium uppercase tracking-wide">Projects Completed</div>
+                    <div className="flex items-start gap-3 text-gray-700">
+                      <Check className="w-5 h-5 text-green-600 mt-0.5" />
+                      <div>Now led by <span className="font-semibold text-gray-900">Clifford</span> &amp; <span className="font-semibold text-gray-900">Kevin Prasad</span></div>
+                    </div>
+                    <div className="flex items-start gap-3 text-gray-700">
+                      <Check className="w-5 h-5 text-green-600 mt-0.5" />
+                      <div>Redefining India's green spaces</div>
+                    </div>
                   </div>
-                </div>
-              </div>
-
-              <Button className="btn-modern bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-6 rounded-full text-base">
-                Discover Our Journey
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
       </section>
 
+      <Logos3 heading="Trusted by leading Clients" />
+
       {/* Core Values with Advanced Cards */}
-      <section className="relative py-32 bg-white overflow-hidden">
+      <section className="relative pt-24 pb-32 bg-white overflow-hidden" data-anim="fade-up" data-delay="100">
         {/* Background Elements */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-green-50 organic-shape blur-3xl opacity-50 -z-10"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-50 organic-shape-2 blur-3xl opacity-50 -z-10"></div>
 
         <div className="container mx-auto px-4">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-full mb-6">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-sm font-semibold text-green-700 uppercase tracking-wider">Our Principles</span>
-            </div>
+          <div className="text-center mb-20" data-anim="fade-up" data-delay="150">
             <h2 className="font-display text-5xl md:text-6xl font-bold text-gray-900 mb-6">Core Values</h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
               The principles that guide everything we do and define who we are as a company
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" data-anim="fade-up" data-delay="200">
             {coreValues.map((value, index) => {
               const IconComponent = Icons[value.icon];
               return (
                 <div
                   key={value.id}
-                  className="card-modern group"
+                  className="group"
                   style={{ animationDelay: `${index * 0.1}s` }}>
 
-                  <div className="glass rounded-3xl p-8 h-full hover:shadow-2xl border border-gray-100">
+                  <TiltCard className="h-full" innerClassName="rounded-3xl p-8 h-full shadow-xl border border-gray-100">
                     <div className="relative">
                       {/* Icon Container */}
                       <div className="relative mb-6">
-                        <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl flex items-center justify-center mx-auto transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
-                          <IconComponent className="w-10 h-10 text-white" />
-                        </div>
-                        <div className="absolute inset-0 bg-green-400 rounded-2xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                        <ThreeDIcon className="mx-auto transform group-hover:scale-105 group-hover:rotate-1 transition-all duration-500">
+                          <CoreValueIcon3D title={value.title} />
+                        </ThreeDIcon>
                       </div>
 
                       <h3 className="font-display text-2xl font-bold text-gray-900 mb-4 text-center">
@@ -218,7 +217,7 @@ const HomePage = () => {
                         {value.description}
                       </p>
                     </div>
-                  </div>
+                  </TiltCard>
                 </div>);
 
             })}
@@ -227,20 +226,16 @@ const HomePage = () => {
       </section>
 
       {/* Team Section with Modern Cards */}
-      <section className="relative py-32 bg-gradient-to-b from-gray-50 to-white">
+      <section className="relative py-32 bg-gradient-to-b from-gray-50 to-white" data-anim="fade-up" data-delay="100">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-full mb-6">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-sm font-semibold text-green-700 uppercase tracking-wider">Expert Team</span>
-            </div>
+          <div className="text-center mb-20" data-anim="fade-up" data-delay="150">
             <h2 className="font-display text-5xl md:text-6xl font-bold text-gray-900 mb-6">Meet the Team</h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
               Our passionate professionals dedicated to bringing your vision to life
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" data-anim="fade-up" data-delay="200">
             {teamMembers.map((member, index) =>
             <div
               key={member.id}
@@ -256,11 +251,6 @@ const HomePage = () => {
                     className="w-full h-full object-cover" />
 
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-
-                    {/* Floating Badge */}
-                    <div className="glass-dark absolute top-6 right-6 px-4 py-2 rounded-full">
-                      <span className="text-white text-sm font-medium">{member.role}</span>
-                    </div>
                   </div>
 
                   {/* Content */}
@@ -276,102 +266,10 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Reviews Section with Advanced Carousel */}
-      <section id="reviews" className="relative py-32 bg-white overflow-hidden">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-green-50 organic-shape blur-3xl opacity-30 -z-10"></div>
-
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-full mb-6">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-sm font-semibold text-green-700 uppercase tracking-wider">Customer Success</span>
-            </div>
-            <h2 className="font-display text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              Stories from our Gardens
-            </h2>
-            <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
-              See how we've transformed outdoor spaces and what our delighted clients have to say
-            </p>
-          </div>
-
-          <div className="max-w-6xl mx-auto relative">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {testimonials.map((testimonial, index) =>
-              <div
-                key={testimonial.id}
-                className={`card-modern transition-all duration-500 ${
-                index === currentTestimonial ? 'scale-105' : 'scale-100 opacity-90'}`
-                }>
-
-                  <div className="glass rounded-3xl overflow-hidden shadow-xl h-full">
-                    {/* Project Image */}
-                    <div className="image-zoom relative h-56 overflow-hidden">
-                      <img
-                      src={testimonial.projectImage}
-                      alt={testimonial.project}
-                      className="w-full h-full object-cover" />
-
-                      <div className="gradient-overlay"></div>
-
-                      {/* Rating Badge */}
-                      <div className="glass-dark absolute top-4 right-4 px-4 py-2 rounded-full flex items-center gap-2">
-                        <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                        <span className="text-white text-sm font-bold">5.0</span>
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-8">
-                      <div className="flex gap-1 mb-4">
-                        {[...Array(5)].map((_, i) =>
-                      <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                      )}
-                      </div>
-
-                      <p className="text-gray-700 italic mb-6 leading-relaxed">
-                        "{testimonial.text}"
-                      </p>
-
-                      <div className="flex items-center gap-4">
-                        <img
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        className="w-14 h-14 rounded-full object-cover ring-2 ring-green-100" />
-
-                        <div>
-                          <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
-                          <p className="text-sm text-gray-600">{testimonial.role}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Navigation */}
-            <div className="flex justify-center gap-4 mt-12">
-              <button
-                onClick={prevTestimonial}
-                className="btn-modern w-12 h-12 rounded-full bg-white border-2 border-gray-200 hover:border-green-500 hover:bg-green-50 flex items-center justify-center shadow-lg">
-
-                <ChevronLeft className="w-5 h-5 text-gray-700" />
-              </button>
-              <button
-                onClick={nextTestimonial}
-                className="btn-modern w-12 h-12 rounded-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 flex items-center justify-center shadow-lg">
-
-                <ChevronRight className="w-5 h-5 text-white" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Contact Section with Glassmorphism */}
-      <section id="contact" className="relative py-32 bg-gradient-to-b from-gray-50 to-white">
+      <section id="contact" className="relative py-32 bg-gradient-to-b from-gray-50 to-white" data-anim="fade-up" data-delay="100">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-20">
+          <div className="text-center mb-20" data-anim="fade-up" data-delay="150">
             <div className="inline-flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-full mb-6">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
               <span className="text-sm font-semibold text-green-700 uppercase tracking-wider">Get In Touch</span>
@@ -384,7 +282,7 @@ const HomePage = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto" data-anim="fade-up" data-delay="200">
             {/* Contact Info Cards */}
             <div className="space-y-6">
               {[

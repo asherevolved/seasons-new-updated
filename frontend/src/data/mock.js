@@ -153,24 +153,31 @@ export const coreValues = [
 export const teamMembers = [
   {
     id: 1,
-    name: "Rhonda Ehecks",
-    role: "Landscape Designer",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop",
-    bio: "With over 15 years of experience in landscape architecture, Rhonda brings creativity and expertise to every project. Her passion for sustainable design has transformed countless outdoor spaces."
+    name: "Clifford Prasad",
+    role: "Founder and MD",
+    image: "/Clifford.png",
+    bio: "Leads Seasons with a focus on quality execution, client satisfaction, and long-term partnerships."
   },
   {
     id: 2,
     name: "Kevin Prasad",
-    role: "Operations Manager",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
-    bio: "Kevin ensures every project runs smoothly from start to finish. His attention to detail and commitment to excellence guarantees client satisfaction with every installation."
+    role: "Co-Founder",
+    image: "/kevin.jpeg",
+    bio: "Supports strategy and delivery, ensuring projects are completed on time with consistent standards."
   },
   {
     id: 3,
-    name: "Emily Williams",
-    role: "Horticulturist",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop",
-    bio: "Emily's deep knowledge of plants and ecosystems helps us create thriving gardens. She specializes in native plants and sustainable gardening practices that benefit local wildlife."
+    name: "Sandesh Shaiva",
+    role: "Chief Operating Officer",
+    image: "/Sandesh%20Shaiva.jpeg",
+    bio: "Oversees operations and execution across teams to keep every site running smoothly."
+  },
+  {
+    id: 4,
+    name: "Asher Shalom",
+    role: "Head of Digital Operations",
+    image: "/WhatsApp%20Image%202026-01-25%20at%2011.37.43%20AM.jpeg",
+    bio: "Leads digital operations and systems to streamline workflows and improve customer experience."
   }
 ];
 
@@ -210,57 +217,86 @@ export const testimonials = [
 export const projects = [
   {
     id: 1,
-    title: "Modern Escape",
-    category: "Residential",
+    slug: "atmosphere",
+    title: "Atmosphere – Cafe",
+    segment: "Cafe – AMC and Maintenance Provided",
+    folder: "Atmosphere",
     year: "2024",
-    image: "https://images.unsplash.com/photo-1681465766418-6474cfdcbb3c",
-    description: "A contemporary residential garden featuring clean lines, modern materials, and sustainable plant selections.",
-    tags: ["Garden Design", "Hardscaping", "Automation"]
+    files: [
+      "WhatsApp Image 2026-01-21 at 7.53.37 PM (1).jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.38 PM (1).jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.38 PM (2).jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.38 PM.jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.39 PM (1).jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.39 PM (2).jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.39 PM (3).jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.40 PM.jpeg"
+    ],
+    description:
+      "Comprehensive AMC and upkeep that keep Atmosphere’s cafe greens fresh, tidy, and welcoming every day.",
+    tags: ["AMC", "Maintenance", "Cafe"]
   },
   {
     id: 2,
-    title: "Evergreen Plaza",
-    category: "Commercial",
+    slug: "sapa",
+    title: "SAPA – Cafe",
+    segment: "Cafe – Maintenance Provided",
+    folder: "SAPA",
     year: "2024",
-    image: "https://images.unsplash.com/photo-1594498653385-d5172c532c00",
-    description: "Commercial landscaping project featuring low-maintenance greenery, efficient irrigation, and welcoming outdoor areas.",
-    tags: ["Lawn Care", "AMC", "Automation"]
+    files: [
+      "WhatsApp Image 2026-01-21 at 7.53.24 PM.jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.25 PM.jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.27 PM.jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.30 PM (1).jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.30 PM.jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.31 PM (1).jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.31 PM (2).jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.31 PM.jpeg"
+    ],
+    description:
+      "Ongoing landscape maintenance that keeps SAPA’s outdoor spaces inviting for guests throughout the year.",
+    tags: ["Maintenance", "Cafe"]
   },
   {
     id: 3,
-    title: "Urban Oasis",
-    category: "Residential",
+    slug: "grand-serene",
+    title: "Grand Serene – Hotel",
+    segment: "Hotel – Landscaping Maintenance AMC",
+    folder: "Grand Serene",
     year: "2024",
-    image: "https://images.unsplash.com/photo-1534710961216-75c88202f43e",
-    description: "Transforming a small urban backyard into a lush, private sanctuary with vertical gardens and cozy seating areas.",
-    tags: ["Garden Design", "Maintenance"]
+    files: [
+      "WhatsApp Image 2026-01-21 at 7.53.35 PM (1).jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.35 PM (2).jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.35 PM (3).jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.35 PM.jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.36 PM (1).jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.36 PM (2).jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.36 PM.jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.37 PM.jpeg"
+    ],
+    description:
+      "Landscaping AMC that turns Grand Serene’s hotel surroundings into a consistently lush and premium experience.",
+    tags: ["Landscaping", "AMC", "Hotel"]
   },
   {
     id: 4,
-    title: "Tranquil Streams",
-    category: "Residential",
-    year: "2023",
-    image: "https://images.unsplash.com/photo-1679004793187-1df16af3aca5",
-    description: "A peaceful garden retreat featuring natural water elements and native plants, creating a contiguous zen garden.",
-    tags: ["Garden Design", "Fabrication"]
-  },
-  {
-    id: 5,
-    title: "Stone & Flora",
-    category: "Residential",
-    year: "2023",
-    image: "https://images.unsplash.com/photo-1663480292011-b316198b034d",
-    description: "Elegant hardscaping project combining natural stone paths with surrounding native plantings for a seamless blend.",
-    tags: ["Hardscaping", "Garden Design"]
-  },
-  {
-    id: 6,
-    title: "Tech Park Greens",
-    category: "Commercial",
-    year: "2023",
-    image: "https://images.pexels.com/photos/280222/pexels-photo-280222.jpeg",
-    description: "Large-scale commercial project incorporating smart irrigation and automated lighting for an expansive technology campus.",
-    tags: ["Lawn Care", "Automation", "AMC"]
+    slug: "sankalp-imperial",
+    title: "Sankalp Imperial – Apartment",
+    segment: "Apartment – Landscaping Maintenance and AMC",
+    folder: "Sankalp Imperial",
+    year: "2024",
+    files: [
+      "WhatsApp Image 2026-01-21 at 7.53.32 PM (2).jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.32 PM.jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.33 PM (1).jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.33 PM (2).jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.33 PM.jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.34 PM (1).jpeg",
+      "WhatsApp Image 2026-01-21 at 7.53.34 PM.jpeg"
+    ],
+    description:
+      "Landscape design, maintenance, and AMC that transformed Sankalp Imperial into a vibrant, green apartment community.",
+    tags: ["Landscaping", "Maintenance", "AMC", "Apartments"]
   }
 ];
 

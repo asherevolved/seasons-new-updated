@@ -1,34 +1,45 @@
-import React, { useState } from 'react';
-import { projects, categories } from '../data/mock';
+import React, { useEffect, useMemo, useState } from 'react';
+import { projects } from '../data/mock';
 import { Card, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const PortfolioPage = () => {
-  const [activeCategory, setActiveCategory] = useState('All Projects');
-  const [visibleProjects, setVisibleProjects] = useState(6);
+  const heroSlides = useMemo(
+    () => [
+      encodeURI('/projects/WhatsApp Image 2026-01-21 at 7.53.23 PM.jpeg'),
+      encodeURI('/projects/WhatsApp Image 2026-01-21 at 7.53.39 PM.jpeg')
+    ],
+    []
+  );
+  const [activeHeroSlide, setActiveHeroSlide] = useState(0);
 
-  const filteredProjects =
-    activeCategory === 'All Projects'
-      ? projects
-      : projects.filter((project) => project.category === activeCategory);
-
-  const loadMore = () => {
-    setVisibleProjects((prev) => prev + 3);
-  };
+  useEffect(() => {
+    if (heroSlides.length <= 1) return;
+    const id = window.setInterval(() => {
+      setActiveHeroSlide((i) => (i + 1) % heroSlides.length);
+    }, 4500);
+    return () => window.clearInterval(id);
+  }, [heroSlides.length]);
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen">
       {/* Hero Section with Parallax */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1681465766418-6474cfdcbb3c')`,
-          }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
-          <div className="grain-overlay"></div>
+        <div className="absolute inset-0">
+          {heroSlides.map((src, idx) => (
+            <div
+              key={src}
+              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
+                idx === activeHeroSlide ? 'opacity-100' : 'opacity-0'
+              }`}
+              style={{ backgroundImage: `url('${src}')` }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
+              <div className="grain-overlay"></div>
+            </div>
+          ))}
         </div>
 
         {/* Floating Shapes */}
@@ -56,33 +67,21 @@ const PortfolioPage = () => {
 
       {/* Filter Section with Modern Design */}
       <section className="sticky top-20 z-40 py-8 glass border-b border-gray-100">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => {
-                  setActiveCategory(category);
-                  setVisibleProjects(6);
-                }}
-                className={`btn-modern px-8 py-4 rounded-full font-semibold transition-all duration-500 ${
-                  activeCategory === category
-                    ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-xl scale-105'
-                    : 'bg-white text-gray-700 hover:bg-gray-50 border-2 border-gray-200 hover:border-green-500'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
+        <div className="container mx-auto px-4"></div>
       </section>
 
       {/* Projects Grid with Advanced Cards */}
       <section className="py-20 bg-gradient-to-b from-white via-gray-50 to-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {filteredProjects.slice(0, visibleProjects).map((project, index) => (
+            {projects.map((project, index) => (
+              (() => {
+                const thumbnailFile = project.files?.[0];
+                const thumbnailSrc = thumbnailFile
+                  ? encodeURI(`/projects/${project.folder}/${thumbnailFile}`)
+                  : undefined;
+
+                return (
               <div
                 key={project.id}
                 className="card-modern animate-fadeInUp"
@@ -92,21 +91,16 @@ const PortfolioPage = () => {
                   {/* Image Container */}
                   <div className="image-zoom relative h-80 overflow-hidden">
                     <img
-                      src={project.image}
+                      src={thumbnailSrc}
                       alt={project.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain bg-gray-100"
                     />
                     <div className="gradient-overlay"></div>
-
-                    {/* Category Badge */}
-                    <div className="glass-dark absolute top-6 right-6 px-4 py-2 rounded-full">
-                      <span className="text-white text-sm font-semibold">{project.category}</span>
-                    </div>
 
                     {/* Title Overlay */}
                     <div className="absolute bottom-6 left-6 right-6">
                       <h3 className="font-display text-3xl font-bold text-white mb-2">{project.title}</h3>
-                      <p className="text-white/90 text-sm">{project.year}</p>
+                      <p className="text-white/90 text-sm">{project.segment}</p>
                     </div>
                   </div>
 
@@ -126,29 +120,20 @@ const PortfolioPage = () => {
                       ))}
                     </div>
 
-                    {/* CTA Button */}
-                    <button className="btn-modern w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white py-4 rounded-2xl font-semibold flex items-center justify-center gap-2 group">
-                      View Case Study
+                    <Link
+                      to={`/portfolio/${project.slug}`}
+                      className="btn-modern w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white py-4 rounded-2xl font-semibold flex items-center justify-center gap-2 group text-center"
+                    >
+                      <span>View Project</span>
                       <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
+                );
+              })()
             ))}
           </div>
-
-          {/* Load More Button */}
-          {visibleProjects < filteredProjects.length && (
-            <div className="text-center mt-16">
-              <Button
-                onClick={loadMore}
-                className="btn-modern bg-white text-green-600 border-2 border-green-600 hover:bg-green-600 hover:text-white px-10 py-6 rounded-full text-lg font-semibold"
-              >
-                Load More Projects
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-            </div>
-          )}
         </div>
       </section>
 

@@ -7,6 +7,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const whatsappLink = 'https://wa.link/9wozd4';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,7 +22,6 @@ const Header = () => {
     { name: 'About', path: '/#about' },
     { name: 'Services', path: '/services' },
     { name: 'Portfolio', path: '/portfolio' },
-    { name: 'Reviews', path: '/#reviews' },
     { name: 'Contact', path: '/#contact' }
   ];
 
@@ -43,9 +43,7 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled 
-          ? 'glass py-4 shadow-lg' 
-          : 'bg-transparent py-6'
+        isScrolled ? 'bg-transparent py-4' : 'bg-white py-6 shadow-md'
       }`}
     >
       <div className="container mx-auto px-4">
@@ -53,9 +51,9 @@ const Header = () => {
           {/* Logo with Modern Design */}
           <Link to="/" className="flex items-center group">
             <img
-              src="https://customer-assets.emergentagent.com/job_garden-craft-2/artifacts/euk5fgx5_ChatGPT%20Image%20Jan%2020%2C%202026%2C%2005_20_40%20PM-Photoroom.png"
+              src="/SEASONS___1_-removebg-preview.png"
               alt="Seasons Landscapers"
-              className={`h-16 w-auto transition-all duration-500 group-hover:scale-105 ${
+              className={`h-24 md:h-28 w-auto transition-all duration-500 group-hover:scale-105 ${
                 isScrolled ? 'brightness-100' : 'brightness-100'
               }`}
             />
@@ -70,12 +68,8 @@ const Header = () => {
                 onClick={() => handleNavClick(link.path)}
                 className={`relative px-5 py-2 text-sm font-medium transition-all duration-300 rounded-full group ${
                   location.pathname === link.path
-                    ? isScrolled
-                      ? 'text-green-600'
-                      : 'text-white'
-                    : isScrolled
-                    ? 'text-gray-700 hover:text-green-600'
-                    : 'text-white/90 hover:text-white'
+                    ? 'text-green-600'
+                    : 'text-gray-900 hover:text-green-600'
                 }`}
               >
                 {link.name}
@@ -90,7 +84,9 @@ const Header = () => {
           <div className="hidden md:block">
             <Button
               className="btn-modern bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-lg"
-              onClick={() => handleNavClick('/#contact')}
+              onClick={() => {
+                window.location.assign(whatsappLink);
+              }}
             >
               GET IN TOUCH
             </Button>
@@ -99,14 +95,14 @@ const Header = () => {
           {/* Mobile Menu Button with Animation */}
           <button
             className={`md:hidden p-2 rounded-xl transition-all ${
-              isScrolled ? 'bg-gray-100 hover:bg-gray-200' : 'bg-white/10 hover:bg-white/20 backdrop-blur-sm'
+              isScrolled ? 'bg-white/10 hover:bg-white/20 backdrop-blur-sm' : 'bg-gray-100 hover:bg-gray-200'
             }`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
-              <X className={`w-6 h-6 ${isScrolled ? 'text-gray-900' : 'text-white'}`} />
+              <X className="w-6 h-6 text-gray-900" />
             ) : (
-              <Menu className={`w-6 h-6 ${isScrolled ? 'text-gray-900' : 'text-white'}`} />
+              <Menu className="w-6 h-6 text-gray-900" />
             )}
           </button>
         </div>
@@ -131,7 +127,9 @@ const Header = () => {
               ))}
               <Button
                 className="btn-modern bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white w-full rounded-2xl py-4 mt-2"
-                onClick={() => handleNavClick('/#contact')}
+                onClick={() => {
+                  window.location.assign(whatsappLink);
+                }}
               >
                 GET IN TOUCH
               </Button>

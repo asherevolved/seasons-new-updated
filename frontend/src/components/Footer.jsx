@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Leaf, MapPin, Phone, Mail, Facebook, Instagram, Twitter, ArrowRight } from 'lucide-react';
+import { MapPin, Phone, Mail, Instagram, ArrowRight } from 'lucide-react';
 import { companyInfo, services } from '../data/mock';
 import { Button } from './ui/button';
 
@@ -27,9 +27,9 @@ const Footer = () => {
           <div className="space-y-6">
             <Link to="/" className="flex items-center group inline-block">
               <img
-                src="https://customer-assets.emergentagent.com/job_garden-craft-2/artifacts/euk5fgx5_ChatGPT%20Image%20Jan%2020%2C%202026%2C%2005_20_40%20PM-Photoroom.png"
+                src="/SEASONS___1_-removebg-preview.png"
                 alt="Seasons Landscapers"
-                className="h-20 w-auto group-hover:scale-105 transition-transform duration-500"
+                className="h-28 md:h-32 w-auto group-hover:scale-105 transition-transform duration-500"
               />
             </Link>
             <p className="text-gray-600 leading-relaxed">
@@ -142,11 +142,7 @@ const Footer = () => {
 
             {/* Social Media with Modern Design */}
             <div className="flex gap-3 mt-6">
-              {[
-                { icon: Facebook, link: '#' },
-                { icon: Instagram, link: '#' },
-                { icon: Twitter, link: '#' }
-              ].map((social, index) => (
+              {[{ icon: Instagram, link: 'https://www.instagram.com/seasonslandscapers/' }].map((social, index) => (
                 <a
                   key={index}
                   href={social.link}

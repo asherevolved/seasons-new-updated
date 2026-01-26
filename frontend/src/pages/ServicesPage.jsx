@@ -6,10 +6,12 @@ import { Card, CardContent } from '../components/ui/card';
 import { Check } from 'lucide-react';
 
 const ServicesPage = () => {
+  const whatsappQuoteLink = 'https://wa.link/9wozd4';
+
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[400px] flex items-center justify-center overflow-hidden bg-gray-900">
+      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden bg-gray-900">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-40"
           style={{
@@ -78,7 +80,12 @@ const ServicesPage = () => {
                     ))}
                   </ul>
 
-                  <Button className="bg-green-600 hover:bg-green-700 text-white px-8 py-6 rounded-full text-base">
+                  <Button
+                    className="bg-green-600 hover:bg-green-700 text-white px-8 py-6 rounded-full text-base"
+                    onClick={() => {
+                      window.location.assign(whatsappQuoteLink);
+                    }}
+                  >
                     Request A Quote →
                   </Button>
                 </div>
@@ -135,7 +142,12 @@ const ServicesPage = () => {
                   <p className="font-bold text-lg">+91 9900053707</p>
                 </div>
               </div>
-              <Button className="bg-white text-green-700 hover:bg-gray-100 px-8 py-6 rounded-full text-base font-semibold">
+              <Button
+                className="bg-white text-green-700 hover:bg-gray-100 px-8 py-6 rounded-full text-base font-semibold"
+                onClick={() => {
+                  window.location.assign(whatsappQuoteLink);
+                }}
+              >
                 START YOUR PROJECT
               </Button>
             </div>
@@ -152,7 +164,13 @@ const ServicesPage = () => {
               <p className="text-gray-600 mb-8 text-center">
                 Tell us about your project and we'll provide a detailed quote tailored to your needs
               </p>
-              <form className="space-y-6">
+              <form
+                className="space-y-6"
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  window.location.assign(whatsappQuoteLink);
+                }}
+              >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
@@ -200,7 +218,10 @@ const ServicesPage = () => {
                   ></textarea>
                 </div>
 
-                <Button className="w-full bg-green-600 hover:bg-green-700 text-white py-6 rounded-lg text-base font-semibold">
+                <Button
+                  type="submit"
+                  className="w-full bg-green-600 hover:bg-green-700 text-white py-6 rounded-lg text-base font-semibold"
+                >
                   SEND REQUEST →
                 </Button>
               </form>
