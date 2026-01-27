@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { Trees, Sprout, Shovel, Droplets, Flower2, Leaf, Scissors, Sun } from "lucide-react";
+const icons = [
+  { icon: Trees, delay: 0 },
+  { icon: Sprout, delay: 200 },
+  { icon: Shovel, delay: 400 },
+  { icon: Droplets, delay: 600 },
+  { icon: Flower2, delay: 800 },
+  { icon: Leaf, delay: 1000 },
+  { icon: Scissors, delay: 1200 },
+  { icon: Sun, delay: 1400 },
+];
 
 const LandscapingLoader = ({ size = 48, duration = 3000 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const icons = [
-    { icon: Trees, delay: 0 },
-    { icon: Sprout, delay: 200 },
-    { icon: Shovel, delay: 400 },
-    { icon: Droplets, delay: 600 },
-    { icon: Flower2, delay: 800 },
-    { icon: Leaf, delay: 1000 },
-    { icon: Scissors, delay: 1200 },
-    { icon: Sun, delay: 1400 },
-  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % icons.length);
     }, duration / icons.length);
     return () => clearInterval(interval);
-  }, [duration]);
+  }, [duration, icons.length]);
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-background">

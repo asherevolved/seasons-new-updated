@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { projects } from '../data/mock';
 import { ArrowLeft, X, ZoomIn, ZoomOut, RotateCcw, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -9,52 +9,53 @@ const ProjectGalleryPage = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [zoom, setZoom] = useState(1);
   const projectFolder = project?.folder ?? '';
-  const projectFiles = project?.files ?? [];
 
   const images = useMemo(
-    () =>
-      projectFiles.map((fileName, index) => ({
+    () => {
+      const projectFiles = project?.files ?? [];
+      return projectFiles.map((fileName, index) => ({
         id: index + 1,
         src: encodeURI(`/projects/${projectFolder}/${fileName}`),
         fileName
-      })),
-    [projectFiles, projectFolder]
+      }));
+    },
+    [project?.files, projectFolder]
   );
 
   const activeImage = activeIndex == null ? null : images[activeIndex] ?? null;
 
   const clampZoom = (value) => Math.min(4, Math.max(1, value));
-  const zoomIn = () => setZoom((z) => clampZoom(Number((z + 0.25).toFixed(2))));
-  const zoomOut = () => setZoom((z) => clampZoom(Number((z - 0.25).toFixed(2))));
-  const resetZoom = () => setZoom(1);
+  const zoomIn = useCallback(() => setZoom((z) => clampZoom(Number((z + 0.25).toFixed(2)))), []);
+  const zoomOut = useCallback(() => setZoom((z) => clampZoom(Number((z - 0.25).toFixed(2)))), []);
+  const resetZoom = useCallback(() => setZoom(1), []);
 
-  const openAt = (index) => {
+  const openAt = useCallback((index) => {
     setActiveIndex(index);
     setZoom(1);
-  };
+  }, []);
 
-  const close = () => {
+  const close = useCallback(() => {
     setActiveIndex(null);
     setZoom(1);
-  };
+  }, []);
 
-  const prev = () => {
+  const prev = useCallback(() => {
     if (!images.length) return;
     setActiveIndex((i) => {
       if (i == null) return 0;
       return (i - 1 + images.length) % images.length;
     });
     setZoom(1);
-  };
+  }, [images.length]);
 
-  const next = () => {
+  const next = useCallback(() => {
     if (!images.length) return;
     setActiveIndex((i) => {
       if (i == null) return 0;
       return (i + 1) % images.length;
     });
     setZoom(1);
-  };
+  }, [images.length]);
 
   useEffect(() => {
     if (activeIndex == null) return;
@@ -68,7 +69,7 @@ const ProjectGalleryPage = () => {
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [activeIndex, images.length]);
+  }, [activeIndex, close, next, prev, resetZoom, zoomIn, zoomOut]);
 
   if (!project) {
     return (
