@@ -19,7 +19,7 @@ const LandscapingLoader = ({ size = 48, duration = 3000 }) => {
       setActiveIndex((prev) => (prev + 1) % icons.length);
     }, duration / icons.length);
     return () => clearInterval(interval);
-  }, [duration, icons.length]);
+  }, [duration]);
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-background">
