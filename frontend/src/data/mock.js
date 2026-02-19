@@ -297,6 +297,62 @@ export const projects = [
     description:
       "Landscape design, maintenance, and AMC that transformed Sankalp Imperial into a vibrant, green apartment community.",
     tags: ["Landscaping", "Maintenance", "AMC", "Apartments"]
+  },
+  {
+    id: 5,
+    slug: "sjr",
+    title: "SJR – Apartments",
+    segment: "Apartment – Landscaping and Maintenance",
+    folder: "SJR",
+    year: "2024",
+    files: [
+      "WhatsApp Image 2025-11-01 at 6.51.27 PM (1).jpeg",
+      "WhatsApp Image 2025-11-01 at 6.51.27 PM (2).jpeg",
+      "WhatsApp Image 2025-11-01 at 6.51.27 PM (3).jpeg",
+      "WhatsApp Image 2025-11-01 at 6.51.27 PM (4).jpeg",
+      "WhatsApp Image 2025-11-01 at 6.51.27 PM (5).jpeg"
+    ],
+    description:
+      "Landscaping and routine maintenance for SJR apartments, keeping the community’s green spaces healthy and welcoming in Bangalore.",
+    tags: ["Landscaping", "Maintenance", "Apartments", "Bangalore"]
+  },
+  {
+    id: 6,
+    slug: "charkos",
+    title: "Charkos – Educational Institute",
+    segment: "Educational Institute – Landscaping and Maintenance",
+    folder: "Charkos",
+    year: "2024",
+    files: [
+      "seasonslandscapers_459736877_17986022834708687_7534415883482411604_n.jpg",
+      "seasonslandscapers_466082956_17993046455708687_1947394267645534735_n.jpg",
+      "seasonslandscapers_466090574_17993046437708687_6641995772355252517_n.jpg",
+      "seasonslandscapers_466145753_17993046428708687_1248468358944612948_n.jpg",
+      "seasonslandscapers_466507527_17993046473708687_5597310741731193343_n.jpg"
+    ],
+    description:
+      "Landscape execution and ongoing maintenance for Charkos, creating a fresh and welcoming campus environment.",
+    tags: ["Landscaping", "Maintenance", "Education"]
+  },
+  {
+    id: 7,
+    slug: "indpro",
+    title: "Indpro – Corporate Project",
+    segment: "Corporate – Landscaping and Maintenance",
+    folder: "Indpro",
+    year: "2024",
+    files: [
+      "seasonslandscapers_491461833_18012699692708687_7062443528004528899_n.jpg",
+      "seasonslandscapers_491462022_18012699347708687_2539598526016417582_n.jpg",
+      "seasonslandscapers_491465708_18012699356708687_7924599433754826461_n.jpg",
+      "seasonslandscapers_491501322_18012699674708687_3791311466627012020_n.jpg",
+      "seasonslandscapers_491514364_18012699683708687_2339285947081241286_n.jpg",
+      "seasonslandscapers_491517333_18012699701708687_5215717047622988688_n.jpg",
+      "seasonslandscapers_491528158_18012699368708687_1193101165535936970_n.jpg"
+    ],
+    description:
+      "Corporate landscape works and maintenance for Indpro, enhancing the workplace with well-kept greenery and clean outdoor edges.",
+    tags: ["Landscaping", "Maintenance", "Corporate"]
   }
 ];
 

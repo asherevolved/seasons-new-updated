@@ -93,7 +93,7 @@ const PortfolioPage = () => {
                     <img
                       src={thumbnailSrc}
                       alt={project.title}
-                      className="w-full h-full object-contain bg-gray-100"
+                      className="w-full h-full object-cover bg-gray-100"
                     />
                     <div className="gradient-overlay"></div>
 
