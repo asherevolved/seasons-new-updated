@@ -26,14 +26,13 @@ const PortfolioPage = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section with Parallax */}
-      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden pt-36">
         <div className="absolute inset-0">
           {heroSlides.map((src, idx) => (
             <div
               key={src}
-              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
-                idx === activeHeroSlide ? 'opacity-100' : 'opacity-0'
-              }`}
+              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${idx === activeHeroSlide ? 'opacity-100' : 'opacity-0'
+                }`}
               style={{ backgroundImage: `url('${src}')` }}
             >
               <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
@@ -82,54 +81,54 @@ const PortfolioPage = () => {
                   : undefined;
 
                 return (
-              <div
-                key={project.id}
-                className="card-modern animate-fadeInUp"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="glass rounded-3xl overflow-hidden shadow-2xl h-full group">
-                  {/* Image Container */}
-                  <div className="image-zoom relative h-80 overflow-hidden">
-                    <img
-                      src={thumbnailSrc}
-                      alt={project.title}
-                      className="w-full h-full object-cover bg-gray-100"
-                    />
-                    <div className="gradient-overlay"></div>
+                  <div
+                    key={project.id}
+                    className="card-modern animate-fadeInUp"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <div className="glass rounded-3xl overflow-hidden shadow-2xl h-full group">
+                      {/* Image Container */}
+                      <div className="image-zoom relative h-80 overflow-hidden">
+                        <img
+                          src={thumbnailSrc}
+                          alt={project.title}
+                          className="w-full h-full object-cover bg-gray-100"
+                        />
+                        <div className="gradient-overlay"></div>
 
-                    {/* Title Overlay */}
-                    <div className="absolute bottom-6 left-6 right-6">
-                      <h3 className="font-display text-3xl font-bold text-white mb-2">{project.title}</h3>
-                      <p className="text-white/90 text-sm">{project.segment}</p>
-                    </div>
-                  </div>
+                        {/* Title Overlay */}
+                        <div className="absolute bottom-6 left-6 right-6">
+                          <h3 className="font-display text-3xl font-bold text-white mb-2">{project.title}</h3>
+                          <p className="text-white/90 text-sm">{project.segment}</p>
+                        </div>
+                      </div>
 
-                  {/* Content */}
-                  <div className="p-8">
-                    <p className="text-gray-600 mb-6 leading-relaxed">{project.description}</p>
+                      {/* Content */}
+                      <div className="p-8">
+                        <p className="text-gray-600 mb-6 leading-relaxed">{project.description}</p>
 
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.tags.map((tag, idx) => (
-                        <span
-                          key={idx}
-                          className="px-4 py-2 bg-gradient-to-r from-green-50 to-emerald-50 text-green-700 text-xs font-semibold rounded-full border border-green-100"
+                        {/* Tags */}
+                        <div className="flex flex-wrap gap-2 mb-6">
+                          {project.tags.map((tag, idx) => (
+                            <span
+                              key={idx}
+                              className="px-4 py-2 bg-gradient-to-r from-green-50 to-emerald-50 text-green-700 text-xs font-semibold rounded-full border border-green-100"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+
+                        <Link
+                          to={`/portfolio/${project.slug}`}
+                          className="btn-modern w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white py-4 rounded-2xl font-semibold flex items-center justify-center gap-2 group text-center"
                         >
-                          {tag}
-                        </span>
-                      ))}
+                          <span>View Project</span>
+                          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                      </div>
                     </div>
-
-                    <Link
-                      to={`/portfolio/${project.slug}`}
-                      className="btn-modern w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white py-4 rounded-2xl font-semibold flex items-center justify-center gap-2 group text-center"
-                    >
-                      <span>View Project</span>
-                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </Link>
                   </div>
-                </div>
-              </div>
                 );
               })()
             ))}
