@@ -167,13 +167,6 @@ export const teamMembers = [
   },
   {
     id: 3,
-    name: "Sandesh Shaiva",
-    role: "Chief Operating Officer",
-    image: "/Sandesh%20Shaiva.jpeg",
-    bio: "Oversees operations and execution across teams to keep every site running smoothly."
-  },
-  {
-    id: 4,
     name: "Asher Shalom",
     role: "Head of Digital Operations",
     image: "/WhatsApp%20Image%202026-01-25%20at%2011.37.43%20AM.jpeg",
@@ -324,11 +317,18 @@ export const projects = [
     folder: "Charkos",
     year: "2024",
     files: [
-      "seasonslandscapers_459736877_17986022834708687_7534415883482411604_n.jpg",
-      "seasonslandscapers_466082956_17993046455708687_1947394267645534735_n.jpg",
-      "seasonslandscapers_466090574_17993046437708687_6641995772355252517_n.jpg",
-      "seasonslandscapers_466145753_17993046428708687_1248468358944612948_n.jpg",
-      "seasonslandscapers_466507527_17993046473708687_5597310741731193343_n.jpg"
+      "WhatsApp Image 2026-02-28 at 1.54.14 PM.jpeg",
+      "WhatsApp Image 2026-02-28 at 1.54.15 PM (1).jpeg",
+      "WhatsApp Image 2026-02-28 at 1.54.15 PM.jpeg",
+      "WhatsApp Image 2026-02-28 at 1.54.16 PM (1).jpeg",
+      "WhatsApp Image 2026-02-28 at 1.54.16 PM (2).jpeg",
+      "WhatsApp Image 2026-02-28 at 1.54.16 PM.jpeg",
+      "WhatsApp Image 2026-02-28 at 1.54.17 PM.jpeg",
+      "WhatsApp Image 2026-02-28 at 1.54.18 PM.jpeg",
+      "WhatsApp Image 2026-02-28 at 1.54.19 PM (1).jpeg",
+      "WhatsApp Image 2026-02-28 at 1.54.19 PM.jpeg",
+      "WhatsApp Image 2026-02-28 at 1.54.20 PM (1).jpeg",
+      "WhatsApp Image 2026-02-28 at 1.54.20 PM.jpeg"
     ],
     description:
       "Landscape execution and ongoing maintenance for Charkos, creating a fresh and welcoming campus environment.",
@@ -353,6 +353,44 @@ export const projects = [
     description:
       "Corporate landscape works and maintenance for Indpro, enhancing the workplace with well-kept greenery and clean outdoor edges.",
     tags: ["Landscaping", "Maintenance", "Corporate"]
+  },
+  {
+    id: 8,
+    slug: "big-cup-cafe",
+    title: "Big Cup Cafe – Cafe",
+    segment: "Cafe – Landscaping",
+    folder: "Big cup cafe",
+    year: "2024",
+    files: [
+      "WhatsApp Image 2026-02-28 at 2.23.00 PM (1).jpeg",
+      "WhatsApp Image 2026-02-28 at 2.23.00 PM (2).jpeg",
+      "WhatsApp Image 2026-02-28 at 2.23.00 PM.jpeg"
+    ],
+    description:
+      "Landscaping services for Big Cup Cafe, creating a fresh and inviting outdoor ambiance that complements the cafe experience.",
+    tags: ["Landscaping", "Cafe"]
+  },
+  {
+    id: 9,
+    slug: "anavilasam",
+    title: "Anavilasam – Restaurant",
+    segment: "Restaurant – Landscaping and Maintenance",
+    folder: "Anavilasam",
+    year: "2024",
+    files: [
+      "WhatsApp Image 2026-02-25 at 8.28.34 PM.jpeg",
+      "WhatsApp Image 2026-02-25 at 8.28.48 PM.jpeg",
+      "WhatsApp Image 2026-02-25 at 8.28.53 PM.jpeg",
+      "WhatsApp Image 2026-02-25 at 8.28.54 PM (1).jpeg",
+      "WhatsApp Image 2026-02-25 at 8.28.54 PM.jpeg",
+      "WhatsApp Image 2026-02-25 at 8.28.59 PM.jpeg",
+      "WhatsApp Image 2026-02-25 at 8.39.49 PM (1).jpeg",
+      "WhatsApp Image 2026-02-25 at 8.39.49 PM (2).jpeg",
+      "WhatsApp Image 2026-02-25 at 8.39.49 PM.jpeg"
+    ],
+    description:
+      "Landscaping and maintenance services for Anavilasam restaurant, crafting a lush and welcoming outdoor setting that enhances the dining experience.",
+    tags: ["Landscaping", "Maintenance", "Restaurant"]
   }
 ];
 
