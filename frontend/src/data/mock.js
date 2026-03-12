@@ -167,10 +167,38 @@ export const teamMembers = [
   },
   {
     id: 3,
-    name: "Asher Shalom",
-    role: "Head of Digital Operations",
-    image: "/WhatsApp%20Image%202026-01-25%20at%2011.37.43%20AM.jpeg",
-    bio: "Leads digital operations and systems to streamline workflows and improve customer experience."
+    name: "Rolin",
+    role: "Content Writer — Brand Communication",
+    image: "/Rolin.jpeg",
+    bio: "Develops clear, compelling written content that reflects the brand’s voice and message."
+  },
+  {
+    id: 4,
+    name: "Shreya",
+    role: "Content Creator — Visual Storytelling",
+    image: "/Shreya.jpeg",
+    bio: "Creates engaging visual content such as photos, videos, and graphics to communicate ideas and brand identity."
+  },
+  {
+    id: 5,
+    name: "Pragati",
+    role: "Tech Lead — Technical Leadership & Innovation",
+    image: "/Pragati.jpeg",
+    bio: "Oversees the technical direction of projects and ensures smooth development processes. Guides the team in implementing efficient solutions and maintaining high-quality digital systems."
+  },
+  {
+    id: 6,
+    name: "Sakshi",
+    role: "Operations Manager — Operations Planning and Coordination",
+    image: "/Sakshi.jpeg",
+    bio: "Manages overall operational activities, ensuring smooth workflow and efficient resource management. Coordinates teams, schedules, and processes to keep projects running effectively."
+  },
+  {
+    id: 7,
+    name: "Pavan",
+    role: "Site Manager — On-site Execution and Supervision",
+    image: "/Pavan.jpeg",
+    bio: "Oversees day-to-day activities at the project site, ensuring work is carried out according to plans and standards. Supervises workers, manages resources, and ensures timely project completion."
   }
 ];
 
